@@ -1,0 +1,135 @@
+<odoo>
+
+    <!-- Vista Formulario para Aviso -->
+    <record id="view_aviso_form" model="ir.ui.view">
+        <field name="name">aviso.form</field>
+        <field name="model">agenda.aviso</field>
+        <field name="arch" type="xml">
+            <form string="Aviso">
+                <sheet>
+                    <group>
+                        <field name="titulo"/>
+                        <field name="descripcion"/>
+                        <field name="fecha"/>
+                        <field name="tipo_aviso"/>
+                        <field name="hora_finalizacion"/>
+                        <field name="ubicacion_gps" placeholder="Ejemplo: -17.776224461521657, -63.19497677006574"/>
+                    </group>
+
+                    <group>
+                        <!-- Campo calculado para mostrar el ID -->
+                        <field name="aviso_id_display" readonly="1" string="ID del Aviso"/>
+                    </group>
+
+                    <!-- Sección de Archivos -->
+                    <group string="Archivos Adjuntos">
+                        <field name="archivo_ids">
+                            <tree editable="bottom">
+                                <field name="name"/>
+                                <field name="image" widget="binary"/>
+                            </tree>
+                        </field>
+                    </group>
+
+                    <!-- Sección de Objetivos -->
+                    <group string="Objetivos">
+                        <field name="objetivo_ids" mode="tree,kanban,form">
+                            <tree>
+                                <field name="user_ids" widget="many2one_tags"/>
+                            </tree>
+                        </field>
+                    </group>
+
+                    
+                     <!-- Sección para Bitácora de Visualización -->
+                     <group string="Bitácora de Visualización">
+                        <field name="bitacora_ids" readonly="1">
+                            <tree>
+                                <field name="idusuario"/>
+                                <field name="nombre"/>
+                                <field name="claseusuario"/>
+                                <field name="curso"/>
+                            </tree>
+                        </field>
+                    </group>
+
+                    <!-- Contenedor para el video -->
+                    <!--<button type="object" string="Iniciar Escaneo de QR" class="btn btn-primary" id="start-qr-scanner" name="dummy_start_qr_scan"/>
+                    -->
+                    <group string="Escáner QR">
+                        <button type="object" string="Iniciar/Detener Escaneo de QR" class="btn btn-primary" id="toggle-qr-scanner" name="dummy_start_qr_scan"/>
+                        <div id="video-container" style="margin-top: 15px; border: 1px solid #ddd; padding: 10px; display: none;">
+                            <p>Escaneando...</p>
+                            <video id="video-preview" style="width: 100%; height: auto;"></video>
+                        </div>
+                        
+                    </group>
+
+                    <!-- Contenedor para mensajes visuales -->
+                    <div id="qr-message-container" style="position: fixed; top: 10px; right: 10px; width: 300px; z-index: 9999;"></div>
+
+                    <!-- Sección para Asistencias -->
+                    <group string="Registro de Asistencias">
+                        <field name="asistencia_ids" readonly="1">
+                            <tree>
+                                <field name="apoderado_id"/>
+                                <field name="fecha_asistencia"/>
+                                <field name="confirmado"/>
+                                <field name="metodo_asistencia"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Tree para Aviso -->
+    <!-- <record id="view_aviso_tree" model="ir.ui.view">
+        <field name="name">agenda.aviso.tree</field>
+        <field name="model">agenda.aviso</field>
+        <field name="arch" type="xml">
+            <tree string="Avisos">
+                <field name="titulo"/>
+                <field name="fecha"/>
+                <field name="descripcion"/>
+            </tree>
+        </field>
+    </record> -->
+    <!-- Vista Kanban -->
+    <record id="view_aviso_kanban" model="ir.ui.view">
+        <field name="name">aviso.kanban</field>
+        <field name="model">agenda.aviso</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <strong><field name="titulo"/></strong>
+                                <div><field name="descripcion"/></div>
+                                <div>Fecha: <field name="fecha"/></div>                            
+                                <!-- Lista de Archivos con Enlaces de Descarga -->
+                                <!-- <div><strong>Archivos:</strong> <div t-raw="archivos_descarga"/></div> -->
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Acción para el menú -->
+    <record id="action_aviso" model="ir.actions.act_window">
+        <field name="name">Avisos</field>
+        <field name="res_model">agenda.aviso</field>
+        <field name="view_mode">kanban,form</field>
+    </record>
+
+    <!-- Menú -->
+    <menuitem id="menu_agenda_aviso"
+        name="Avisos"
+        parent="menu_agenda_acciones"
+        action="action_aviso"
+        sequence="10"/>
+</odoo>

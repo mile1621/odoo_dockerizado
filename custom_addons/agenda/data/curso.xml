@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="curso_KinderA" model="agenda.curso">
+            <field name="grado">Kinder</field>
+            <field name="paralelo">A</field>
+        </record>
+        <record id="curso_KinderB" model="agenda.curso">
+            <field name="grado">Kinder</field>
+            <field name="paralelo">B</field>
+        </record>
+        <record id="curso_primero_primA" model="agenda.curso">
+            <field name="grado">Primero Primaria</field>
+            <field name="paralelo">A</field>
+        </record>
+        <record id="curso_primero_primB" model="agenda.curso">
+            <field name="grado">Primero Primaria</field>
+            <field name="paralelo">B</field>
+        </record>
+        <record id="curso_segundo_primA" model="agenda.curso">
+            <field name="grado">Segundo Primaria</field>
+            <field name="paralelo">A</field>
+        </record>
+        <record id="curso_segundo_primB" model="agenda.curso">
+            <field name="grado">Segundo Primaria</field>
+            <field name="paralelo">B</field>
+        </record>
+        <record id="curso_tercero_primA" model="agenda.curso">
+            <field name="grado">Tercero Primaria</field>
+            <field name="paralelo">A</field>
+        </record>
+        <record id="curso_tercero_primB" model="agenda.curso">
+            <field name="grado">Tercero Primaria</field>
+            <field name="paralelo">B</field>
+        </record>
+        <record id="curso_cuarto_primA" model="agenda.curso">
+            <field name="grado">Cuarto Primaria</field>
+            <field name="paralelo">A</field>
+        </record>
+        <record id="curso_cuarto_primB" model="agenda.curso">
+            <field name="grado">Cuarto Primaria</field>
+            <field name="paralelo">B</field>
+        </record>
+        <record id="curso_quinto_primA" model="agenda.curso">
+            <field name="grado">Quinto Primaria</field>
+            <field name="paralelo">A</field>
+        </record>
+        <record id="curso_quinto_primB" model="agenda.curso">
+            <field name="grado">Quinto Primaria</field>
+            <field name="paralelo">B</field>
+        </record>
+        <record id="curso_sexto_primA" model="agenda.curso">
+            <field name="grado">Sexto Primaria</field>
+            <field name="paralelo">A</field>
+        </record>
+        <record id="curso_sexto_primB" model="agenda.curso">
+            <field name="grado">Sexto Primaria</field>
+            <field name="paralelo">B</field>
+        </record>
+    </data>
+</odoo>

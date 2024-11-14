@@ -1,0 +1,57 @@
+<odoo>
+    <!-- Vista Tree para Boletin -->
+    <record id="view_tree_boletin" model="ir.ui.view">
+        <field name="name">boletin.tree</field>
+        <field name="model">agenda.boletin</field>
+        <field name="arch" type="xml">
+            <tree string="Boletín">
+                <field name="student_id"/>
+                <field name="nroBimestre"/>
+                <field name="Notas" widget="one2many_list">
+                    <tree string="Notas">
+                        <field name="curso_materia_id" string="Materia"/>
+                        <field name="nota" string="Nota"/>
+                    </tree>
+                </field>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Form para Boletin (solo lectura) -->
+    <record id="view_form_boletin" model="ir.ui.view">
+        <field name="name">boletin.form</field>
+        <field name="model">agenda.boletin</field>
+        <field name="arch" type="xml">
+            <form string="Boletín" create="false" edit="false" delete="false">
+                <sheet>
+                    <group>
+                        <field name="student_id" readonly="1"/>
+                        <field name="nroBimestre" readonly="1"/>
+                        <field name="Notas" readonly="1">
+                            <tree string="Notas">
+                                <field name="curso_materia_id" string="Materia"/>
+                                <field name="nota" string="Nota"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción para abrir Boletin en vista Tree y Form solo lectura -->
+    <record id="action_boletin" model="ir.actions.act_window">
+        <field name="name">Boletin</field>
+        <field name="res_model">agenda.boletin</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_tree_boletin"/>
+        <field name="views" eval="[(ref('view_tree_boletin'), 'tree'), (ref('view_form_boletin'), 'form')]"/>
+    </record>
+
+    <!-- Menú para acceder a Boletines -->
+    <menuitem id="menu_agenda_boletines"
+        name="Boletines"
+        parent="menu_agenda_acciones"
+        action="action_boletin"
+        sequence="10"/>
+</odoo>

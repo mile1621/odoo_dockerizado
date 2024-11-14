@@ -1,0 +1,78 @@
+<odoo>
+    <!-- Vista Formulario -->
+    <record id="view_evento_form" model="ir.ui.view">
+        <field name="name">evento.form</field>
+        <field name="model">agenda.evento</field>
+        <field name="arch" type="xml">
+            <form string="Asignación">
+                <sheet>
+                    <group>
+                        <field name="titulo"/>
+                        <field name="descripcion"/>
+                        <field name="fecha_publicacion"/>
+                        <field name="fecha_realizacion"/>
+                        <field name="curso_materia_id" domain="[('profesor_id.user_id', '=', uid)]"/>
+                    </group>
+                    <group string="Archivos">
+                        <field name="archivo_ids">
+                            <tree editable="bottom">
+                                <field name="name"/>
+                                <field name="image" widget="binary"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <!-- Sección para Bitácora de Visualización -->
+                    <group string="Bitácora de Visualización">
+                        <field name="bitacora_ids" readonly="1">
+                            <tree>
+                                <field name="id_usuario"/>
+                                <field name="nombre"/>
+                                <field name="clase_usuario"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Kanban -->
+    <record id="view_evento_kanban" model="ir.ui.view">
+        <field name="name">evento.kanban</field>
+        <field name="model">agenda.evento</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <strong><field name="titulo"/></strong>
+                                <div><field name="descripcion"/></div>
+                                <div>Fecha Publicación: <field name="fecha_publicacion"/></div>
+                                <div>Fecha Realización: <field name="fecha_realizacion"/></div>
+                                <div>Curso: <field name="curso_materia_id"/></div>
+
+                                <!-- Lista de Archivos con Enlaces de Descarga -->
+                                <!-- <div><strong>Archivos:</strong> <div t-raw="archivos_descarga"/></div> -->
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Acción para el menú -->
+    <record id="action_evento" model="ir.actions.act_window">
+        <field name="name">Eventos</field>
+        <field name="res_model">agenda.evento</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <!-- Menú -->
+    <menuitem id="menu_agenda_evento"
+        name="Eventos"
+        parent="menu_agenda_acciones"
+        action="action_evento"
+        sequence="10"/>
+</odoo>

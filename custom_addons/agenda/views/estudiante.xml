@@ -1,0 +1,51 @@
+<!-- views/estudiante.xml -->
+<odoo>
+    <record id="view_estudiante_form" model="ir.ui.view">
+        <field name="name">estudiante.form</field>
+        <field name="model">agenda.estudiante</field>
+        <field name="arch" type="xml">
+            <form string="Estudiante">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="last_name"/>
+                        <field name="studentcode"/>
+                        <field name="birth_date"/>
+                        <field name="telefono"/>
+                        <field name="sexo"/>
+                        <field name="curso_id"/>
+                    </group>
+                </sheet>
+                
+            </form>
+        </field>
+    </record>                                                     
+
+    <record id="view_estudiante_tree" model="ir.ui.view">
+        <field name="name">estudiante.tree</field>
+        <field name="model">agenda.estudiante</field>
+        <field name="arch" type="xml">
+            <tree string="Estudiantes">
+                <field name="name"/>
+                <field name="last_name"/>
+                <field name="studentcode"/>
+                <field name="birth_date"/>
+                <field name="telefono"/>
+                <field name="sexo"/>
+                <field name="curso_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_estudiante" model="ir.actions.act_window">
+        <field name="name">Estudiantes</field>
+        <field name="res_model">agenda.estudiante</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_agenda_estudiante"
+        name="Estudiantes"
+        parent="menu_agenda_personas"
+        action="action_estudiante"
+        sequence="10"/>
+</odoo>

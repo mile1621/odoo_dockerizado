@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="agenda.QrScannerTemplate">
+        <div>
+            <video id="camera-preview" width="400" height="300" t-att-play="state.isCameraOn"></video>
+            <button t-on-click="toggleCamera" class="btn btn-primary">
+                <t t-esc="state.isCameraOn ? 'Detener' : 'Iniciar'"/> Escaneo de QR
+            </button>
+            <div id="qr-result" t-if="state.qrResult">
+                Resultado QR: <t t-esc="state.qrResult"/>
+            </div>
+        </div>
+    </t>
+</templates>

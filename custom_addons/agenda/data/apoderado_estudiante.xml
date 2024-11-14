@@ -1,0 +1,63 @@
+<odoo>
+    <!-- Usuario para el Apoderado -->
+    <record id="user_jose_martinez" model="res.users">
+        <field name="name">José Martínez</field>
+        <field name="login">jose.martinez@example.com</field>
+        <field name="email">jose.martinez@example.com</field>
+        <field name="password">12345678</field>
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]"/>
+    </record>
+
+    <!-- Apoderado -->
+    <record id="apoderado_jose_martinez" model="agenda.apoderado">
+        <field name="ci">12345678</field>
+        <field name="name">José</field>
+        <field name="email">jose.martinez@example.com</field>
+        <field name="telefono">+59112345678</field>
+        <field name="user_id" ref="user_jose_martinez"/>
+    </record>
+
+    <!-- Usuario para Estudiante 1 -->
+    <record id="user_ana_martinez" model="res.users">
+        <field name="name">Ana Martínez</field>
+        <field name="login">ana.martinez@example.com</field>
+        <field name="email">ana.martinez@example.com</field>
+        <field name="password">EST001</field>
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]"/>
+    </record>
+
+    <!-- Estudiante 1 -->
+    <record id="estudiante_ana_martinez" model="agenda.estudiante">
+        <field name="studentcode">EST001</field>
+        <field name="name">Ana</field>
+        <field name="last_name">Martínez</field>
+        <field name="birth_date">2010-05-12</field>
+        <field name="telefono">+59187654321</field>
+        <field name="sexo">femenino</field>
+        <field name="apoderado_id" ref="apoderado_jose_martinez"/>
+        <field name="user_id" ref="user_ana_martinez"/>
+        <field name="curso_id" ref="curso_primero_primA"/>
+    </record>
+
+    <!-- Usuario para Estudiante 2 -->
+    <record id="user_pedro_martinez" model="res.users">
+        <field name="name">Pedro Martínez</field>
+        <field name="login">pedro.martinez@example.com</field>
+        <field name="email">pedro.martinez@example.com</field>
+        <field name="password">EST002</field>
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_portal')])]"/>
+    </record>
+
+    <!-- Estudiante 2 -->
+    <record id="estudiante_pedro_martinez" model="agenda.estudiante">
+        <field name="studentcode">EST002</field>
+        <field name="name">Pedro</field>
+        <field name="last_name">Martínez</field>
+        <field name="birth_date">2012-08-20</field>
+        <field name="telefono">+59187654322</field>
+        <field name="sexo">masculino</field>
+        <field name="apoderado_id" ref="apoderado_jose_martinez"/>
+        <field name="user_id" ref="user_pedro_martinez"/>
+        <field name="curso_id" ref="curso_segundo_primA"/>
+    </record>
+</odoo>

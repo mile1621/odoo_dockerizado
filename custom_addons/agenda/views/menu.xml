@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_agenda_root"
+        name="Agenda"
+        sequence="10"/>
+
+    <menuitem id="menu_agenda_personas"
+        name="Personas"
+        parent="menu_agenda_root"
+        sequence="10"/>
+    
+    <menuitem id="menu_agenda_estructura"
+        name="Estructura"
+        parent="menu_agenda_root"
+        sequence="10"/>
+    
+    <menuitem id="menu_agenda_acciones"
+        name="Acciones"
+        parent="menu_agenda_root"
+        sequence="10"/>
+
+</odoo>

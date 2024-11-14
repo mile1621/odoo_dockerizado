@@ -1,0 +1,62 @@
+<odoo>
+    <!-- Vista Formulario para Nota -->
+    <record id="view_form_nota" model="ir.ui.view">
+        <field name="name">nota.form</field>
+        <field name="model">agenda.nota</field>
+        <field name="arch" type="xml">
+            <form string="Registro de Nota">
+                <sheet>
+                    <group>
+                        <field name="nroBimestre" required="1"/>
+                        <field name="nota" required="1"/>
+                        <field name="curso_materia_id" required="1"/>
+                        <field name="student_id" required="1"/>
+                        <field name="observacion" required="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_search_nota" model="ir.ui.view">
+        <field name="name">nota.search</field>
+        <field name="model">agenda.nota</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="curso_materia_id"/>
+                <filter string="Por Curso" name="filter_curso" domain="[]"/>
+            </search>
+        </field>
+    </record>
+    
+    <!-- Vista Tree para Nota -->
+    <record id="view_tree_nota" model="ir.ui.view">
+        <field name="name">nota.tree</field>
+        <field name="model">agenda.nota</field>
+        <field name="arch" type="xml">
+            <tree string="Notas">
+                <field name="nroBimestre"/>
+                <field name="nota"/>
+                <field name="curso_materia_id"/>
+                <field name="student_id"/>
+                <field name="observacion"/>
+                
+            </tree>
+        </field>
+    </record>
+
+    <!-- Acción para abrir la vista de Notas -->
+    <record id="action_nota" model="ir.actions.act_window">
+        <field name="name">Notas</field>
+        <field name="res_model">agenda.nota</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_search_nota"/>
+    </record>
+
+    <!-- Menú para acceder a Notas -->
+    <menuitem id="menu_agenda_nota"
+        name="Notas"
+        parent="menu_agenda_acciones"
+        action="action_nota"
+        sequence="10"/>
+</odoo>

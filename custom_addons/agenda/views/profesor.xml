@@ -1,0 +1,47 @@
+<!-- views/student.xml -->
+<odoo>
+    
+    <record id="view_profesor_form" model="ir.ui.view">
+        <field name="name">profesor.form</field>
+        <field name="model">agenda.profesor</field>
+        <field name="arch" type="xml">
+            <form string="Profesores">
+                <sheet>
+                    <group>
+                        <field name="codigo"/>
+                        <field name="telefono"/>
+                        <field name="direccion"/>
+                        <field name="sexo"/>
+                        <field name="user_id" widget="Many2one_tags" options="{'no_create_edit': True}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_profesor_tree" model="ir.ui.view">
+        <field name="name">profesor.tree</field>
+        <field name="model">agenda.profesor</field>
+        <field name="arch" type="xml">
+            <tree string="Profesores">
+                 <field name="codigo"/>
+                <field name="direccion"/>
+                <field name="telefono"/>
+                <field name="sexo"/>
+            </tree>
+        </field>
+    </record>    
+
+   
+    <record id="action_profesor" model="ir.actions.act_window">
+        <field name="name">Profesores</field>
+        <field name="res_model">agenda.profesor</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_agenda_profesor"
+        name="Profesores"
+        parent="menu_agenda_personas"
+        action="action_profesor"
+        sequence="10"/>
+</odoo>

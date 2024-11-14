@@ -1,0 +1,33 @@
+services:
+  web:
+    build:
+     context: .
+    image: odoo:17.0
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    volumes:
+      - odoo-web-data-2:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./custom_addons:/mnt/extra-addons
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo
+    command: odoo -i base --db_host=db --db_user=odoo --db_password=odoo --database=odoo_agenda
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=odoo_agenda
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+    volumes:
+      - odoo-db-data-2:/var/lib/postgresql/data
+    ports:
+    - "5432:5432"
+
+volumes:
+  odoo-web-data-2:
+  odoo-db-data-2:

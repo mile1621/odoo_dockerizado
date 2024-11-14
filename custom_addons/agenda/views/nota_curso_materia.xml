@@ -1,0 +1,30 @@
+<odoo>
+    <!-- Vista Tree para Curso Materia -->
+    <record id="view_tree_curso_materia" model="ir.ui.view">
+        <field name="name">curso_materia.tree</field>
+        <field name="model">agenda.curso_materia</field>
+        <field name="arch" type="xml">
+            <tree string="Seleccionar Curso Materia" create="false" delete="false">
+                <field name="name"/>
+                <field name="profesor_id"/>
+                <button name="action_open_notas_by_curso" type="object" string="Ver Notas"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Acción para abrir la vista de Cursos Materia -->
+    <record id="action_select_curso_materia" model="ir.actions.act_window">
+        <field name="name">Seleccionar Curso Materia</field>
+        <field name="res_model">agenda.curso_materia</field>
+        <field name="view_mode">tree</field>
+        <field name="target">new</field> <!-- Abre en una nueva ventana modal -->
+        <field name="context">{'default_is_select_mode': True}</field>
+    </record>
+
+    <!-- Menú para acceder a la vista de selección de Cursos Materia -->
+    <menuitem id="menu_agenda_select_curso_materia"
+        name="Cursos"
+        parent="menu_agenda_acciones"
+        action="action_select_curso_materia"
+        sequence="10"/>
+</odoo>

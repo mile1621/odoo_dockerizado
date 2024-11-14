@@ -1,0 +1,43 @@
+<!-- views/curso_materia.xml -->
+<odoo>
+    <record id="view_curso_materia_form" model="ir.ui.view">
+        <field name="name">curso.materia.form</field>
+        <field name="model">agenda.curso_materia</field>
+        <field name="arch" type="xml">
+            <form string="Asignación">
+                <sheet>
+                    <group>
+                        <field name="curso_id" widget="Many2one_tags" options="{'no_create_edit': True}"/>
+                        <field name="materia_id" widget="Many2one_tags" options="{'no_create_edit': True}"/>
+                        <field name="profesor_id" widget="Many2one_tags" options="{'no_create_edit': True}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_curso_materia_tree" model="ir.ui.view">
+        <field name="name">curso.materia.tree</field>
+        <field name="model">agenda.curso_materia</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="curso_id"/>
+                <field name="materia_id"/>
+                <field name="name"/>
+                <field name="profesor_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_curso_materia" model="ir.actions.act_window">
+        <field name="name">Cursos Materias</field>
+        <field name="res_model">agenda.curso_materia</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_agenda_curso_materia"
+        name="Asignar curso materias"
+        parent="menu_agenda_acciones"
+        action="action_curso_materia"
+        sequence="10"/>
+</odoo>
